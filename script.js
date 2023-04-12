@@ -4,8 +4,7 @@ function threeSum(arr, target) {
 		return a-b;
 	});	
 	
-	let res = 0;
-	let diff = Number.MAX_VALUE;
+	let res = Number.MAX_VALUE;
 	for(let i =0; i < arr.length-2 ; i++){
 		let j =i+1;
 		let k = arr.length-1;
@@ -14,20 +13,15 @@ function threeSum(arr, target) {
 		    
 		    let sum = (arr[i]) + (arr[j]) + (arr[k]);
     		let curr_diff = Math.abs(Math.abs(sum) - Math.abs(res));
-			if(sum == target){
-				return target;
-			}else if( sum > target){
-			  if(curr_diff < diff){
-			    diff = curr_diff;
-			    res = sum;
-			  }
-				k--;
-			} else if(sum < target){
-				if(curr_diff < diff){
-			    diff = curr_diff;
-			    res = sum;
-			  }
+			if(Math.abs(target - sum ) < Math.abs(target - res)){
+				res = sum;
+			}
+			if(sum < target){
 				j++;
+			}else if(sum > target){
+				k--;
+			}else{
+				return sum;
 			}
 		}
 	}
